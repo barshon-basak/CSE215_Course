@@ -4,8 +4,8 @@ public class HelloWorld{
      public static void main(String []args){
        Scanner input = new Scanner(System.in);
        int random,num,num1,num2,rand1,rand2;
-      // random = (int)(Math.random()*(99-10+1)+10);
-      random =25;
+       random = (int)(Math.random()*(99-10+1)+10);
+      //random =25;
        System.out.print("Enter any two digit number: ");
        num = input.nextInt();
        num1= num%10;
