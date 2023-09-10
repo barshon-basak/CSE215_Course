@@ -1,0 +1,64 @@
+
+package javaapplication19;
+
+import java.util.Scanner;
+
+public class JavaApplication19 {
+
+    public static void main(String[] args) {
+        
+        Scanner input = new Scanner(System.in);
+        
+        System.out.println("Enter an expression : ");
+        String str = new String();
+        str= input.nextLine();
+        
+        int s=0;
+        for(int i=0 ; i<str.length(); i++){
+                if(str.charAt(i)== '(' || str.charAt(i)== ')')
+                        s++;
+        }
+        
+        Stack myStack = new Stack(s);
+        boolean notBalance = false;
+        for(int i=0 ; i<str.length(); i++){
+              switch((str.charAt(i))){
+                  case '(':
+                      if(myStack.isStackFull()){
+                          System.out.println("Stack is full.");
+                           break;
+                      }
+                      else{
+                          myStack.push((str.charAt(i)));
+                          break;
+                      }
+                  case ')':
+                      
+                      if(myStack.isStackEmpty()){ 
+                              System.out.println("Stack is Empty.");
+                              notBalance= true;
+                              break;
+                          }
+                      else{
+                          myStack.pop();
+                          break;
+                          }
+                  /*default:
+                      System.out.println("Not P");
+*/
+              }
+        }
+        
+        if(myStack.isStackEmpty()){
+            if(!notBalance){
+                System.out.println("Balanced.");
+            }
+            else {
+                System.out.println("Not Balanced.");
+            }
+        }
+        else{
+            System.out.println("Not Balanced");}
+    }
+    
+}
