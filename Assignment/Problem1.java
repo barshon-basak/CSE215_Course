@@ -2,21 +2,33 @@ package javaapplication46;
 
 public class JavaApplication46 {
 
-    public static long calculate(int year) {
-        int numofyear, leap;
-        numofyear = year - 2023;
-        leap = ((numofyear - 1) / 4) + 1;
-
-        long ans = (365*60*24) * numofyear - (365*60*24/2) * numofyear - (365*60*24/8) * numofyear + ((leap*60*24) - (leap*30*24) - (leap*180));
-        return ans;
-    }
-
     public static void main(String[] args) {
+        
+        double BIRTH_RATE = 1.0 ;  
+        double DEATH_RATE = 1.0 / 2.0;  
+        double MIGRATION_RATE = 1.0 / 8.0;  
+        double MINUTES_IN_YEAR = 365 * 24 * 60;  
 
-        long presentPopulation = 172954319;
-        for (int i = 2024; i <= (2024 + 5); i++) {
-            System.out.println("Population in " + i + " is: " + (calculate(i) + presentPopulation));
+      
+        int currentPopulation = 172954319;  
 
+        
+        for (int year = 2024; year <= 2028; year++) 
+        {
+            double totalBirths = BIRTH_RATE * MINUTES_IN_YEAR;
+            
+            double totalDeaths = DEATH_RATE * MINUTES_IN_YEAR;
+            
+            double totalMigrants = MIGRATION_RATE * MINUTES_IN_YEAR;
+
+            double netPopulationChange = totalBirths - totalDeaths - totalMigrants;
+            if(year== 2024 || year == 2028)
+            {
+            	netPopulationChange = netPopulationChange + (1440-720-180);
+            }
+            currentPopulation += (int) netPopulationChange;
+
+            System.out.println("Estimated Population in " + year + ": " + String.format("%,d", currentPopulation));
         }
     }
 }
